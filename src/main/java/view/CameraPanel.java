@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class CameraPanel extends JPanel {
     private static final double START_DISTANCE = 300;
+    private static final int ZOOM_STEP = 5;
     private static final int VIEW_WIDTH = 1280;
     private static final int VIEW_HEIGHT = 800;
     private static final int STEP = 1;
@@ -23,15 +24,14 @@ public class CameraPanel extends JPanel {
     private Map<Integer, Point2D> projectedCoordinates;
     private List<Edge> connections;
 
-    private ProjectionUtils projectionUtils;
+    private GeometricUtils geometricUtils;
 
     public CameraPanel(VirtualObject virtualObject) {
         this.distance = START_DISTANCE;
         this.connections = virtualObject.getConnections();
         this.realCoordinates = virtualObject.getPoints();
         this.transformedCoordinates = realCoordinates;
-        this.projectionUtils = new ProjectionUtils();
-
+        this.geometricUtils = new GeometricUtils();
         this.setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
         this.setBackground(Color.BLACK);
     }
@@ -42,7 +42,7 @@ public class CameraPanel extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setPaint(Color.WHITE);
 
-        projectedCoordinates = projectionUtils.getPerspectiveProjection(transformedCoordinates, distance);
+        projectedCoordinates = geometricUtils.getPerspectiveProjection(transformedCoordinates, distance);
 
         for (Edge lineToDraw : connections) {
             Point2D pointA = projectedCoordinates.get(lineToDraw.getPointA().getId());
@@ -99,7 +99,7 @@ public class CameraPanel extends JPanel {
     }
 
     private void rotateXLeft(Point3D coordinateToTransform) {
-        rotateX(coordinateToTransform, ROTATION_STEP);
+        geometricUtils.rotateX(coordinateToTransform, ROTATION_STEP);
     }
 
     public void rotateXRight() {
@@ -109,15 +109,54 @@ public class CameraPanel extends JPanel {
     }
 
     private void rotateXRight(Point3D coordinateToTransform) {
-        rotateX(coordinateToTransform, -ROTATION_STEP);
+        geometricUtils.rotateX(coordinateToTransform, -ROTATION_STEP);
     }
 
-    private void rotateX(Point3D coordinateToTransform, double rotationStep) {
-        double cosine = Math.cos(rotationStep);
-        double sine = Math.sin(rotationStep);
-        double Y = coordinateToTransform.getY();
-        double Z = coordinateToTransform.getZ();
-        coordinateToTransform.setY(Y * cosine - Z * sine);
-        coordinateToTransform.setZ(Y * sine + Z * cosine);
+    public void rotateYLeft() {
+        for (Point3D coordinateToTransform : transformedCoordinates) {
+            rotateYLeft(coordinateToTransform);
+        }
+    }
+
+    private void rotateYLeft(Point3D coordinateToTransform) {
+        geometricUtils.rotateY(coordinateToTransform, ROTATION_STEP);
+    }
+
+    public void rotateYRight() {
+        for (Point3D coordinateToTransform : transformedCoordinates) {
+            rotateYRight(coordinateToTransform);
+        }
+    }
+
+    private void rotateYRight(Point3D coordinateToTransform) {
+        geometricUtils.rotateY(coordinateToTransform, -ROTATION_STEP);
+    }
+
+    public void rotateZLeft() {
+        for (Point3D coordinateToTransform : transformedCoordinates) {
+            rotateZLeft(coordinateToTransform);
+        }
+    }
+
+    private void rotateZLeft(Point3D coordinateToTransform) {
+        geometricUtils.rotateZ(coordinateToTransform, ROTATION_STEP);
+    }
+
+    public void rotateZRight() {
+        for (Point3D coordinateToTransform : transformedCoordinates) {
+            rotateZRight(coordinateToTransform);
+        }
+    }
+
+    private void rotateZRight(Point3D coordinateToTransform) {
+        geometricUtils.rotateZ(coordinateToTransform, -ROTATION_STEP);
+    }
+
+    public void zoomIn() {
+        distance += ZOOM_STEP;
+    }
+
+    public void zoomOut() {
+        distance -= ZOOM_STEP;
     }
 }

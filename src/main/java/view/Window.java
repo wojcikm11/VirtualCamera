@@ -5,14 +5,18 @@ import model.VirtualObject;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 public class Window extends JFrame implements KeyListener {
     private CameraPanel cameraPanel;
-
+    private static final List<Integer> AVAILABLE_KEYS = List.of(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D,
+                                                                KeyEvent.VK_E, KeyEvent.VK_Q, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT,
+                                                                KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_X, KeyEvent.VK_Z,
+                                                                KeyEvent.VK_EQUALS, KeyEvent.VK_MINUS);
 
      public Window(VirtualObject virtualObject) {
         cameraPanel = new CameraPanel(virtualObject);
-        this.add(cameraPanel);
+        this.setContentPane(cameraPanel);
         this.pack();
         this.addKeyListener(this);
         this.setTitle("Virtual Camera");
@@ -54,8 +58,28 @@ public class Window extends JFrame implements KeyListener {
             case KeyEvent.VK_RIGHT:
                 cameraPanel.rotateXRight();
                 break;
+            case KeyEvent.VK_UP:
+                cameraPanel.rotateYRight();
+                break;
+            case KeyEvent.VK_DOWN:
+                cameraPanel.rotateYLeft();
+                break;
+            case KeyEvent.VK_Z:
+                cameraPanel.rotateZRight();
+                break;
+            case KeyEvent.VK_X:
+                cameraPanel.rotateZLeft();
+                break;
+            case KeyEvent.VK_EQUALS:
+                cameraPanel.zoomIn();
+                break;
+            case KeyEvent.VK_MINUS:
+                cameraPanel.zoomOut();
+                break;
         }
-        cameraPanel.paint(getGraphics());
+        if (AVAILABLE_KEYS.contains(e.getKeyCode())) {
+            cameraPanel.paint(getGraphics());
+        }
     }
 
     @Override
