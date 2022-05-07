@@ -10,8 +10,9 @@ public class Main {
 //        DataReader dataReader = new DataReader();
 //        List<Edge> edgeList = dataReader.readData("data.json");
 //        edgeList.forEach(System.out::println);
+        String filePath = args[0].toLowerCase();
         DataReader dataReader = new DataReader();
-        VirtualObject virtualObject = dataReader.readData("data.json");
+        VirtualObject virtualObject = dataReader.readData(filePath);
         Window window = new Window(virtualObject);
     }
 }
