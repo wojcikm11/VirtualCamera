@@ -1,6 +1,5 @@
 package model;
 
-
 public class Edge {
     private Point3D pointA;
     private Point3D pointB;
@@ -24,13 +23,5 @@ public class Edge {
 
     public void setPointB(Point3D pointB) {
         this.pointB = pointB;
-    }
-
-    @Override
-    public String toString() {
-        return "Edge{" +
-                "pointA=" + pointA +
-                ", pointB=" + pointB +
-                '}';
     }
 }

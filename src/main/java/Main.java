@@ -1,9 +1,6 @@
 import input.DataReader;
-import model.Edge;
 import model.VirtualObject;
 import view.Window;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

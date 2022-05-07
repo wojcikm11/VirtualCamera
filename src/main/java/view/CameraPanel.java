@@ -13,13 +13,11 @@ import java.util.Map;
 public class CameraPanel extends JPanel {
     private static final double START_DISTANCE = 300;
     private static final int ZOOM_STEP = 5;
-    private static final int VIEW_WIDTH = 1280;
-    private static final int VIEW_HEIGHT = 800;
+
     private static final int STEP = 1;
     private static final double ROTATION_STEP = Math.toRadians(1.0);
 
     private double distance;
-    private List<Point3D> realCoordinates;
     private List<Point3D> transformedCoordinates;
     private Map<Integer, Point2D> projectedCoordinates;
     private List<Edge> connections;
@@ -29,16 +27,15 @@ public class CameraPanel extends JPanel {
     public CameraPanel(VirtualObject virtualObject) {
         this.distance = START_DISTANCE;
         this.connections = virtualObject.getConnections();
-        this.realCoordinates = virtualObject.getPoints();
-        this.transformedCoordinates = realCoordinates;
+        this.transformedCoordinates = virtualObject.getPoints();
         this.geometricUtils = new GeometricUtils();
-        this.setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT));
+
         this.setBackground(Color.BLACK);
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
         g2D.setPaint(Color.WHITE);
 

@@ -13,77 +13,45 @@ public class Window extends JFrame implements KeyListener {
                                                                 KeyEvent.VK_E, KeyEvent.VK_Q, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT,
                                                                 KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_X, KeyEvent.VK_Z,
                                                                 KeyEvent.VK_EQUALS, KeyEvent.VK_MINUS);
+    private static final int VIEW_WIDTH = 1280;
+    private static final int VIEW_HEIGHT = 800;
 
-     public Window(VirtualObject virtualObject) {
+    public Window(VirtualObject virtualObject) {
         cameraPanel = new CameraPanel(virtualObject);
-        this.setContentPane(cameraPanel);
-        this.pack();
+        this.setSize(VIEW_WIDTH, VIEW_HEIGHT);
         this.addKeyListener(this);
         this.setTitle("Virtual Camera");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(null);
+        this.setContentPane(cameraPanel);
         this.setVisible(true);
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
     public void keyPressed(KeyEvent e) {
-        switch(e.getKeyCode())
-        {
-            case KeyEvent.VK_W:
-                cameraPanel.moveForward();
-                break;
-            case KeyEvent.VK_S:
-                cameraPanel.moveBackwards();
-                break;
-            case KeyEvent.VK_D:
-                cameraPanel.moveRight();
-                break;
-            case KeyEvent.VK_A:
-                cameraPanel.moveLeft();
-                break;
-            case KeyEvent.VK_E:
-                cameraPanel.moveUp();
-                break;
-            case KeyEvent.VK_Q:
-                cameraPanel.moveDown();
-                break;
-            case KeyEvent.VK_LEFT:
-                cameraPanel.rotateXLeft();
-                break;
-            case KeyEvent.VK_RIGHT:
-                cameraPanel.rotateXRight();
-                break;
-            case KeyEvent.VK_UP:
-                cameraPanel.rotateYRight();
-                break;
-            case KeyEvent.VK_DOWN:
-                cameraPanel.rotateYLeft();
-                break;
-            case KeyEvent.VK_Z:
-                cameraPanel.rotateZRight();
-                break;
-            case KeyEvent.VK_X:
-                cameraPanel.rotateZLeft();
-                break;
-            case KeyEvent.VK_EQUALS:
-                cameraPanel.zoomIn();
-                break;
-            case KeyEvent.VK_MINUS:
-                cameraPanel.zoomOut();
-                break;
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W -> cameraPanel.moveForward();
+            case KeyEvent.VK_S -> cameraPanel.moveBackwards();
+            case KeyEvent.VK_D -> cameraPanel.moveRight();
+            case KeyEvent.VK_A -> cameraPanel.moveLeft();
+            case KeyEvent.VK_E -> cameraPanel.moveUp();
+            case KeyEvent.VK_Q -> cameraPanel.moveDown();
+            case KeyEvent.VK_LEFT -> cameraPanel.rotateXLeft();
+            case KeyEvent.VK_RIGHT -> cameraPanel.rotateXRight();
+            case KeyEvent.VK_UP -> cameraPanel.rotateYRight();
+            case KeyEvent.VK_DOWN -> cameraPanel.rotateYLeft();
+            case KeyEvent.VK_Z -> cameraPanel.rotateZRight();
+            case KeyEvent.VK_X -> cameraPanel.rotateZLeft();
+            case KeyEvent.VK_EQUALS -> cameraPanel.zoomIn();
+            case KeyEvent.VK_MINUS -> cameraPanel.zoomOut();
         }
         if (AVAILABLE_KEYS.contains(e.getKeyCode())) {
-            cameraPanel.paint(getGraphics());
+            cameraPanel.repaint();
         }
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {}
 
-    }
+    @Override
+    public void keyTyped(KeyEvent e) {}
 }
