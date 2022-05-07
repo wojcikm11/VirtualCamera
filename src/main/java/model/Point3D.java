@@ -1,12 +1,12 @@
 package model;
 
-public class Point {
+public class Point3D {
     private Integer id;
     private double x;
     private double y;
     private double z;
 
-    public Point(Integer id, double x, double y, double z) {
+    public Point3D(Integer id, double x, double y, double z) {
         this.id = id;
         this.x = x;
         this.y = y;

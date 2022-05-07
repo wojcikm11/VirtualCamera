@@ -1,5 +1,6 @@
 import input.DataReader;
 import model.Edge;
+import model.VirtualObject;
 import view.Window;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public class Main {
 //        List<Edge> edgeList = dataReader.readData("data.json");
 //        edgeList.forEach(System.out::println);
         DataReader dataReader = new DataReader();
-        List<Edge> data = dataReader.readData("data.json");
-        Window window = new Window(data);
+        VirtualObject virtualObject = dataReader.readData("data.json");
+        Window window = new Window(virtualObject);
     }
 }
