@@ -13,8 +13,8 @@ public class Window extends JFrame implements KeyListener {
                                                                 KeyEvent.VK_E, KeyEvent.VK_Q, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT,
                                                                 KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_X, KeyEvent.VK_Z,
                                                                 KeyEvent.VK_EQUALS, KeyEvent.VK_MINUS);
-    private static final int VIEW_WIDTH = 1280;
-    private static final int VIEW_HEIGHT = 800;
+    public static final int VIEW_WIDTH = 1280;
+    public static final int VIEW_HEIGHT = 800;
 
     public Window(VirtualObject virtualObject) {
         cameraPanel = new CameraPanel(virtualObject);
