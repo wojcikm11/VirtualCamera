@@ -35,12 +35,12 @@ public class Window extends JFrame implements KeyListener {
             case KeyEvent.VK_A -> cameraPanel.moveLeft();
             case KeyEvent.VK_E -> cameraPanel.moveUp();
             case KeyEvent.VK_Q -> cameraPanel.moveDown();
-            case KeyEvent.VK_LEFT -> cameraPanel.rotateXLeft();
-            case KeyEvent.VK_RIGHT -> cameraPanel.rotateXRight();
-            case KeyEvent.VK_UP -> cameraPanel.rotateYRight();
-            case KeyEvent.VK_DOWN -> cameraPanel.rotateYLeft();
-            case KeyEvent.VK_Z -> cameraPanel.rotateZRight();
-            case KeyEvent.VK_X -> cameraPanel.rotateZLeft();
+            case KeyEvent.VK_LEFT -> cameraPanel.lookLeft();
+            case KeyEvent.VK_RIGHT -> cameraPanel.lookRight();
+            case KeyEvent.VK_UP -> cameraPanel.lookUp();
+            case KeyEvent.VK_DOWN -> cameraPanel.lookDown();
+            case KeyEvent.VK_Z -> cameraPanel.rotateLeft();
+            case KeyEvent.VK_X -> cameraPanel.rotateRight();
             case KeyEvent.VK_EQUALS -> cameraPanel.zoomIn();
             case KeyEvent.VK_MINUS -> cameraPanel.zoomOut();
         }

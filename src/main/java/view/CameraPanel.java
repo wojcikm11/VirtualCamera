@@ -53,25 +53,25 @@ public class CameraPanel extends JPanel {
         return (int) Math.ceil(number);
     }
 
-    public void moveForward() {
+    public void moveBackwards() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             coordinateToTransform.setZ(coordinateToTransform.getZ() + STEP);
         }
     }
 
-    public void moveBackwards() {
+    public void moveForward() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             coordinateToTransform.setZ(coordinateToTransform.getZ() - STEP);
         }
     }
 
-    public void moveLeft() {
+    public void moveRight() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             coordinateToTransform.setX(coordinateToTransform.getX() - STEP);
         }
     }
 
-    public void moveRight() {
+    public void moveLeft() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             coordinateToTransform.setX(coordinateToTransform.getX() + STEP);
         }
@@ -89,7 +89,7 @@ public class CameraPanel extends JPanel {
         }
     }
 
-    public void rotateXLeft() {
+    public void lookDown() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             rotateXLeft(coordinateToTransform);
         }
@@ -99,7 +99,7 @@ public class CameraPanel extends JPanel {
         geometricUtils.rotateX(coordinateToTransform, ROTATION_STEP);
     }
 
-    public void rotateXRight() {
+    public void lookUp() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             rotateXRight(coordinateToTransform);
         }
@@ -109,7 +109,7 @@ public class CameraPanel extends JPanel {
         geometricUtils.rotateX(coordinateToTransform, -ROTATION_STEP);
     }
 
-    public void rotateYLeft() {
+    public void lookLeft() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             rotateYLeft(coordinateToTransform);
         }
@@ -119,7 +119,7 @@ public class CameraPanel extends JPanel {
         geometricUtils.rotateY(coordinateToTransform, ROTATION_STEP);
     }
 
-    public void rotateYRight() {
+    public void lookRight() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             rotateYRight(coordinateToTransform);
         }
@@ -129,7 +129,7 @@ public class CameraPanel extends JPanel {
         geometricUtils.rotateY(coordinateToTransform, -ROTATION_STEP);
     }
 
-    public void rotateZLeft() {
+    public void rotateLeft() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             rotateZLeft(coordinateToTransform);
         }
@@ -139,7 +139,7 @@ public class CameraPanel extends JPanel {
         geometricUtils.rotateZ(coordinateToTransform, ROTATION_STEP);
     }
 
-    public void rotateZRight() {
+    public void rotateRight() {
         for (Point3D coordinateToTransform : transformedCoordinates) {
             rotateZRight(coordinateToTransform);
         }

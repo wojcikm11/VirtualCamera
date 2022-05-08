@@ -24,8 +24,8 @@ public class GeometricUtils {
 //        x_Transformed = point.getX() * distance / point.getZ();
 //        y_Transformed = point.getY() * distance / point.getZ();
 
-        x_Transformed = distance / point.getY() * point.getX() + Window.VIEW_WIDTH / 2.0;
-        y_Transformed = Window.VIEW_HEIGHT / 2.0 - distance / point.getY() * point.getZ();
+        x_Transformed =  point.getX() * distance / point.getZ() + Window.VIEW_WIDTH / 2.0;
+        y_Transformed =  point.getY() * distance / point.getZ() + Window.VIEW_HEIGHT / 2.0;
 
         return new Point2D(x_Transformed, y_Transformed);
     }
