@@ -17,6 +17,10 @@ public class GeometricUtils {
         return perspectiveCoordinates;
     }
 
+    public boolean edgeVisible(Point3D pointA, Point3D pointB) {
+        return (pointA.getZ() >= 0 && pointB.getZ() >= 0) || (pointA.getZ() <= 0 && pointB.getZ() <= 0);
+    }
+
     private Point2D getTransformedPoint(Point3D point, double distance) {
         double x_Transformed;
         double y_Transformed;

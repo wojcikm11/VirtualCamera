@@ -40,13 +40,21 @@ public class CameraPanel extends JPanel {
         g2D.setPaint(Color.WHITE);
 
         projectedCoordinates = geometricUtils.getPerspectiveProjection(transformedCoordinates, distance);
-
+        System.out.println(distance);
         for (Edge lineToDraw : connections) {
-            Point2D pointA = projectedCoordinates.get(lineToDraw.getPointA().getId());
-            Point2D pointB = projectedCoordinates.get(lineToDraw.getPointB().getId());
-            g2D.drawLine(getRoundedInt(pointA.getX()), getRoundedInt(pointA.getY()),
-                         getRoundedInt(pointB.getX()), getRoundedInt(pointB.getY()));
+            Integer pointAId = lineToDraw.getPointA().getId();
+            Integer pointBId = lineToDraw.getPointB().getId();
+            if (geometricUtils.edgeVisible(findPoint3DById(pointAId), findPoint3DById(pointBId))) {
+                Point2D pointA = projectedCoordinates.get(pointAId);
+                Point2D pointB = projectedCoordinates.get(pointBId);
+                g2D.drawLine(getRoundedInt(pointA.getX()), getRoundedInt(pointA.getY()),
+                        getRoundedInt(pointB.getX()), getRoundedInt(pointB.getY()));
+            }
         }
+    }
+
+    private Point3D findPoint3DById(Integer id) {
+        return transformedCoordinates.stream().filter(point3D -> point3D.getId().equals(id)).findFirst().orElseThrow();
     }
 
     private int getRoundedInt(double number) {
